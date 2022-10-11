@@ -1,7 +1,7 @@
 /*
- * ¹¦¡¡ÄÜ£º±í´ïÊ½ÖĞÀ¨ºÅÅä¶Ô
- * °æ±¾ºÅ£º2022-09-29
- * ±àÒë»·¾³£ºMinGW CLion 2021.2.3(C++17)
+ * åŠŸã€€èƒ½ï¼šé€šè®¯å½•ä¿¡æ¯è¡¨
+ * ç‰ˆæœ¬å·ï¼š2022-09-29
+ * ç¼–è¯‘ç¯å¢ƒï¼šMinGW CLion 2021.2.3(C++17)
 */
 #include <iostream>
 #include <cstdlib>
@@ -9,37 +9,37 @@
 using namespace std;
 
 typedef struct node{
-    char name[8]; //ĞÕÃû
-    char sex[3]; // ĞÔ±ğ
-    int age; //ÄêÁä
-    char phoneno[12]; // µç»°ºÅ
-    char wechatno[16]; // Î¢ĞÅºÅ
-    struct node *pNext; // Ö¸ÕëÓò
-}NODE,*PNODE; // Á´±íÀàĞÍÃû
+    char name[8]; //å§“å
+    char sex[3]; // æ€§åˆ«
+    int age; //å¹´é¾„
+    char phoneno[12]; // ç”µè¯å·
+    char wechatno[16]; // å¾®ä¿¡å·
+    struct node *pNext; // æŒ‡é’ˆåŸŸ
+}NODE,*PNODE; // é“¾è¡¨ç±»å‹å
 
-PNODE create_list(void); // Éú³ÉÒ»¸öÁ´±í
-int len_list(PNODE); // ÇóÒ»¸öÁ´±íµÄ³¤¶È£¨Í·½áµã£©
-void empt_list(PNODE); // Çå¿ÕÒ»¸öÁ´±í£¨Í·½áµã£©
-void destroy_list(PNODE*); // Ïú»ÙÒ»¸öÁ´±í£¨Í·½áµãµØÖ·£©×¢ÒâÒªÈ¡µØÖ·
-PNODE find_pTail(PNODE); // ²éÕÒÁ´±íµÄÎ²½áµã£¨Í·½Úµã£©
-bool add_list(PNODE, int); // ÔÚÁ´±íºóÔö¼Ón¸ö½Úµã£¨Í·½Úµã, ¸öÊı£©
-bool insert_list(PNODE, int); // ÏòÁ´±íÖĞÄ³¸ö½ÚµãÇ°²åÈëÒ»¸ö½Úµã£¨Í·½Úµã, Î»ÖÃ, Öµ£©
-void traverse_list(PNODE); // ±éÀúÁ´±í£¨Í·½Úµã£©
-bool delete_list(PNODE, int); // É¾³ıµÚn¸ö½Úµã£¬Ê×½Úµã¼ÇÎªµÚ1¸ö½Úµã£¨Í·½áµã£¬Î»ÖÃ£©
-bool modify_list(PNODE, int); // ĞŞ¸ÄµÚn¸ö½Úµã£¬Ê×½Úµã¼ÇÎªµÚ1¸ö½Úµã£¨Í·½áµã£¬Î»ÖÃ£©
-PNODE lookup_list(PNODE, string); // ²éÕÒº¬ÓĞ¡°xxx¡±ĞÅÏ¢µÄ½ÚµãÎ»ÖÃ£¨Í·½áµã£¬ĞÅÏ¢£©
+PNODE create_list(void); // ç”Ÿæˆä¸€ä¸ªé“¾è¡¨
+int len_list(PNODE); // æ±‚ä¸€ä¸ªé“¾è¡¨çš„é•¿åº¦ï¼ˆå¤´ç»“ç‚¹ï¼‰
+void empt_list(PNODE); // æ¸…ç©ºä¸€ä¸ªé“¾è¡¨ï¼ˆå¤´ç»“ç‚¹ï¼‰
+void destroy_list(PNODE*); // é”€æ¯ä¸€ä¸ªé“¾è¡¨ï¼ˆå¤´ç»“ç‚¹åœ°å€ï¼‰æ³¨æ„è¦å–åœ°å€
+PNODE find_pTail(PNODE); // æŸ¥æ‰¾é“¾è¡¨çš„å°¾ç»“ç‚¹ï¼ˆå¤´èŠ‚ç‚¹ï¼‰
+bool add_list(PNODE, int); // åœ¨é“¾è¡¨åå¢åŠ nä¸ªèŠ‚ç‚¹ï¼ˆå¤´èŠ‚ç‚¹, ä¸ªæ•°ï¼‰
+bool insert_list(PNODE, int); // å‘é“¾è¡¨ä¸­æŸä¸ªèŠ‚ç‚¹å‰æ’å…¥ä¸€ä¸ªèŠ‚ç‚¹ï¼ˆå¤´èŠ‚ç‚¹, ä½ç½®, å€¼ï¼‰
+void traverse_list(PNODE); // éå†é“¾è¡¨ï¼ˆå¤´èŠ‚ç‚¹ï¼‰
+bool delete_list(PNODE, int); // åˆ é™¤ç¬¬nä¸ªèŠ‚ç‚¹ï¼Œé¦–èŠ‚ç‚¹è®°ä¸ºç¬¬1ä¸ªèŠ‚ç‚¹ï¼ˆå¤´ç»“ç‚¹ï¼Œä½ç½®ï¼‰
+bool modify_list(PNODE, int); // ä¿®æ”¹ç¬¬nä¸ªèŠ‚ç‚¹ï¼Œé¦–èŠ‚ç‚¹è®°ä¸ºç¬¬1ä¸ªèŠ‚ç‚¹ï¼ˆå¤´ç»“ç‚¹ï¼Œä½ç½®ï¼‰
+PNODE lookup_list(PNODE, string); // æŸ¥æ‰¾å«æœ‰â€œxxxâ€ä¿¡æ¯çš„èŠ‚ç‚¹ä½ç½®ï¼ˆå¤´ç»“ç‚¹ï¼Œä¿¡æ¯ï¼‰
 
 
 int main()
 {
     PNODE pHead = create_list();
-    int len; cout << "ÊäÈëÒªÍ¨Ñ¶Â¼ÖĞÊı¾İµÄ¸öÊı" << endl; cin >> len;
+    int len; cout << "è¾“å…¥è¦é€šè®¯å½•ä¸­æ•°æ®çš„ä¸ªæ•°" << endl; cin >> len;
     add_list(pHead, len);
     traverse_list(pHead);
     insert_list(pHead,2); traverse_list(pHead);
     delete_list(pHead,3);traverse_list(pHead);
     modify_list (pHead, 2);traverse_list(pHead);
-    PNODE l = lookup_list(pHead, "ºé");
+    PNODE l = lookup_list(pHead, "æ´ª");
     empt_list(pHead); traverse_list(pHead);
     destroy_list(&pHead); traverse_list(pHead);
     return 0;
@@ -49,12 +49,12 @@ PNODE create_list(void)
 {
     PNODE pHead = (PNODE) malloc(sizeof(NODE));
     if (pHead == NULL){
-        cout << "¶¯Ì¬ÄÚ´æ·ÖÅäÊ§°Ü£¡" << endl;
+        cout << "åŠ¨æ€å†…å­˜åˆ†é…å¤±è´¥ï¼" << endl;
         exit(-1);
     }
     pHead->pNext = NULL;
     return pHead;
-} // Éú³ÉÒ»¸öÍ¨Ñ¶Â¼Á´±í²¢·µ»ØÆäÍ·½áµã
+} // ç”Ÿæˆä¸€ä¸ªé€šè®¯å½•é“¾è¡¨å¹¶è¿”å›å…¶å¤´ç»“ç‚¹
 
 PNODE find_pTail(PNODE pHead)
 {
@@ -64,26 +64,26 @@ PNODE find_pTail(PNODE pHead)
         pTail = pTail->pNext;
     }
     return pTail;
-} // Ñ°ÕÒpHeadËùÖ¸ÏòµÄÁ´±íµÄÎ²½áµã²¢·µ»ØÆäµØÖ·
+} // å¯»æ‰¾pHeadæ‰€æŒ‡å‘çš„é“¾è¡¨çš„å°¾ç»“ç‚¹å¹¶è¿”å›å…¶åœ°å€
 
 bool add_list(PNODE pHead, int val)
 {
     PNODE pTail = find_pTail(pHead);
     for (int i = 0; i < val; ++i) {
-        cout << "ÊäÈëÒª¼ÓÈëµÄµÚ " << (i+1) << " ÌõÊı¾İ" << endl;
+        cout << "è¾“å…¥è¦åŠ å…¥çš„ç¬¬ " << (i+1) << " æ¡æ•°æ®" << endl;
         PNODE pNew = (PNODE) malloc(sizeof(NODE));
         pNew->pNext = NULL;
-        cout << "ĞÕÃû£º"; cin >> pNew->name;
-        cout << "ĞÔ±ğ£º"; cin >> pNew->sex;
-        cout << "ÄêÁä£º"; cin >> pNew->age;
-        cout << "ÊÖ»úºÅ£º"; cin >> pNew->phoneno;
-        cout << "Î¢ĞÅºÅ£º"; cin >> pNew->wechatno;
+        cout << "å§“åï¼š"; cin >> pNew->name;
+        cout << "æ€§åˆ«ï¼š"; cin >> pNew->sex;
+        cout << "å¹´é¾„ï¼š"; cin >> pNew->age;
+        cout << "æ‰‹æœºå·ï¼š"; cin >> pNew->phoneno;
+        cout << "å¾®ä¿¡å·ï¼š"; cin >> pNew->wechatno;
         pTail->pNext = pNew;
-        pTail = pNew; // ÈÃpTailÊ¼ÖÕÖ¸Ïò×îºóÒ»¸ö½Úµã
+        pTail = pNew; // è®©pTailå§‹ç»ˆæŒ‡å‘æœ€åä¸€ä¸ªèŠ‚ç‚¹
         cout << "------------------------" << endl;
     }
     return true;
-} // ÔÚpHeadËùÖ¸ÏòµÄÁ´±íºóÃæÌí¼ÓÉÏval¸ö½Úµã
+} // åœ¨pHeadæ‰€æŒ‡å‘çš„é“¾è¡¨åé¢æ·»åŠ ä¸Švalä¸ªèŠ‚ç‚¹
 
 bool insert_list(PNODE pHead, int pos)
 {
@@ -91,50 +91,50 @@ bool insert_list(PNODE pHead, int pos)
     int i = 0;
     PNODE pNew = (PNODE)malloc(sizeof(NODE));
     if (pNew == NULL){
-        cout << "¶¯Ì¬ÄÚ´æ·ÖÅäÊ§°Ü£¡" << endl;
+        cout << "åŠ¨æ€å†…å­˜åˆ†é…å¤±è´¥ï¼" << endl;
         exit(-1);
     }
     for (; i < pos - 1; ++i) {
         p = p->pNext;
     }
-    cout << "ÊäÈëÒª²åÈëµÚ" << pos << "¸ö½ÚµãÇ°ÃæµÄÊı¾İ" << endl;
-    cout << "ĞÕÃû£º"; cin >> pNew->name;
-    cout << "ĞÔ±ğ£º"; cin >> pNew->sex;
-    cout << "ÄêÁä£º"; cin >> pNew->age;
-    cout << "ÊÖ»úºÅ£º"; cin >> pNew->phoneno;
-    cout << "Î¢ĞÅºÅ£º"; cin >> pNew->wechatno;
+    cout << "è¾“å…¥è¦æ’å…¥ç¬¬" << pos << "ä¸ªèŠ‚ç‚¹å‰é¢çš„æ•°æ®" << endl;
+    cout << "å§“åï¼š"; cin >> pNew->name;
+    cout << "æ€§åˆ«ï¼š"; cin >> pNew->sex;
+    cout << "å¹´é¾„ï¼š"; cin >> pNew->age;
+    cout << "æ‰‹æœºå·ï¼š"; cin >> pNew->phoneno;
+    cout << "å¾®ä¿¡å·ï¼š"; cin >> pNew->wechatno;
     pNew->pNext = p->pNext;
     p->pNext = pNew;
-    cout << "½Úµã²åÈë³É¹¦" << endl;
+    cout << "èŠ‚ç‚¹æ’å…¥æˆåŠŸ" << endl;
     cout << "------------------------" << endl;
     return true;
-} // ÔÚpHeadËùÖ¸ÏòÁ´±íµÄµÚpos¸ö½ÚµãµÄÇ°Ãæ²åÈëÒ»¸öĞÂµÄ½Úµã£¬²¢ÇÒposµÄÖµ´Ó1¿ªÊ¼
+} // åœ¨pHeadæ‰€æŒ‡å‘é“¾è¡¨çš„ç¬¬posä¸ªèŠ‚ç‚¹çš„å‰é¢æ’å…¥ä¸€ä¸ªæ–°çš„èŠ‚ç‚¹ï¼Œå¹¶ä¸”posçš„å€¼ä»1å¼€å§‹
 
 void traverse_list(PNODE pHead)
 {
     PNODE p = pHead;
     if (p == NULL){
-        cout << "Á´±í²»´æÔÚ»òÒÑÏú»Ù" << endl;
+        cout << "é“¾è¡¨ä¸å­˜åœ¨æˆ–å·²é”€æ¯" << endl;
         cout << "------------------------" << endl;
         return;
     }
     if (p->pNext == NULL){
-        cout << "Á´±íÎª¿Õ" << endl;
+        cout << "é“¾è¡¨ä¸ºç©º" << endl;
         cout << "------------------------" << endl;
     }
     else{
         for (int i = 0; p->pNext != NULL; i++){
             p = p->pNext;
-            cout << "Á´±íµÄµÚ " << (i+1) << " ÌõÊı¾İÎª£º" << endl;
-            cout << "ĞÕÃû:" << p->name << " ";
-            cout << "ĞÔ±ğ:" << p->sex << " ";
-            cout << "ÄêÁä:" << p->age << " ";
-            cout << "ÊÖ»úºÅ:" << p->phoneno << " ";
-            cout << "Î¢ĞÅºÅ:" << p->wechatno << endl;
+            cout << "é“¾è¡¨çš„ç¬¬ " << (i+1) << " æ¡æ•°æ®ä¸ºï¼š" << endl;
+            cout << "å§“å:" << p->name << " ";
+            cout << "æ€§åˆ«:" << p->sex << " ";
+            cout << "å¹´é¾„:" << p->age << " ";
+            cout << "æ‰‹æœºå·:" << p->phoneno << " ";
+            cout << "å¾®ä¿¡å·:" << p->wechatno << endl;
             cout << "------------------------" << endl;
         }
     }
-} // ±éÀúÍ·½ÚµãÎªpHeadµÄÁ´±í
+} // éå†å¤´èŠ‚ç‚¹ä¸ºpHeadçš„é“¾è¡¨
 
 int len_list(PNODE pHead)
 {
@@ -143,7 +143,7 @@ int len_list(PNODE pHead)
         i++;
     }
     return i;
-} // ÇóÒ»¸öÁ´±íµÄ³¤¶È
+} // æ±‚ä¸€ä¸ªé“¾è¡¨çš„é•¿åº¦
 
 
 void empt_list(PNODE pHead)
@@ -156,44 +156,44 @@ void empt_list(PNODE pHead)
         p->pNext = p->pNext->pNext;
         free (q);
     }
-    q = NULL; // ÊÍ·ÅÁËqµÄÄÚ´æ¿Õ¼ä£¬µ«ÊÇÖ¸Õëq»¹ÊÇ´æÔÚ£¬ËùÒÔÒªÈÃq=NULL£¬±ÜÃâÒ°Ö¸Õë
-} // Çå¿ÕÁ´±í
+    q = NULL; // é‡Šæ”¾äº†qçš„å†…å­˜ç©ºé—´ï¼Œä½†æ˜¯æŒ‡é’ˆqè¿˜æ˜¯å­˜åœ¨ï¼Œæ‰€ä»¥è¦è®©q=NULLï¼Œé¿å…é‡æŒ‡é’ˆ
+} // æ¸…ç©ºé“¾è¡¨
 
 void destroy_list(PNODE *pHead)
 {
     empt_list(*pHead);
     *pHead = NULL;
-} // Ïú»ÙÒ»¸öÁ´±í
+} // é”€æ¯ä¸€ä¸ªé“¾è¡¨
 
 bool delete_list(PNODE pHead, int pos)
 {
     PNODE p = pHead;
     for (int i = 1; i < pos; ++i) {
         p = p->pNext;
-    } // p ÎªÉ¾³ıµÄÇ°Ò»¸ö½Úµã
+    } // p ä¸ºåˆ é™¤çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
     PNODE q = p->pNext;
     free(q);
     q = NULL;
     p->pNext = p->pNext->pNext;
-    cout << "ÒÑÉ¾³ıµÚ" << pos << "¸ö½Úµã" << endl;
+    cout << "å·²åˆ é™¤ç¬¬" << pos << "ä¸ªèŠ‚ç‚¹" << endl;
     cout << "------------------------" << endl;
     return true;
-} // É¾³ıµÚpos¸ö½Úµã£¬Ê×½Úµã¼ÇÎªµÚ1¸ö½Úµã
+} // åˆ é™¤ç¬¬posä¸ªèŠ‚ç‚¹ï¼Œé¦–èŠ‚ç‚¹è®°ä¸ºç¬¬1ä¸ªèŠ‚ç‚¹
 
 bool modify_list(PNODE pHead, int pos){
     PNODE p = pHead;
     for (int i = 0; i < pos; ++i) {
         p = p->pNext;
-    } // p ÎªĞŞ¸ÄµÄ½Úµã
-    cout << "ÊäÈëÒªĞŞ¸ÄµÄµÚ" << pos << "¸ö½ÚµãµÄÊı¾İ" << endl;
-    cout << "ĞÕÃû£º"; cin >> p->name;
-    cout << "ĞÔ±ğ£º"; cin >> p->sex;
-    cout << "ÄêÁä£º"; cin >> p->age;
-    cout << "ÊÖ»úºÅ£º"; cin >> p->phoneno;
-    cout << "Î¢ĞÅºÅ£º"; cin >> p->wechatno;
+    } // p ä¸ºä¿®æ”¹çš„èŠ‚ç‚¹
+    cout << "è¾“å…¥è¦ä¿®æ”¹çš„ç¬¬" << pos << "ä¸ªèŠ‚ç‚¹çš„æ•°æ®" << endl;
+    cout << "å§“åï¼š"; cin >> p->name;
+    cout << "æ€§åˆ«ï¼š"; cin >> p->sex;
+    cout << "å¹´é¾„ï¼š"; cin >> p->age;
+    cout << "æ‰‹æœºå·ï¼š"; cin >> p->phoneno;
+    cout << "å¾®ä¿¡å·ï¼š"; cin >> p->wechatno;
     cout << "------------------------" << endl;
     return true;
-} // ĞŞ¸ÄµÚpos¸ö½Úµã£¬Ê×½Úµã¼ÇÎªµÚ1¸ö½Úµã
+} // ä¿®æ”¹ç¬¬posä¸ªèŠ‚ç‚¹ï¼Œé¦–èŠ‚ç‚¹è®°ä¸ºç¬¬1ä¸ªèŠ‚ç‚¹
 
 PNODE lookup_list(PNODE pHead, string s) {
     PNODE p = pHead;
@@ -201,11 +201,11 @@ PNODE lookup_list(PNODE pHead, string s) {
     while (p != NULL) {
         if ((string) p->name == s || (string) p->sex == s || (string) p->phoneno == s || (string) p->wechatno == s ||
             to_string(p->age) == s) {
-            cout << "²éÕÒµ½ " << s << " ³öÏÖÔÚµÚ " << i << " ¸ö½Úµã" << endl;
-            return p; // ²éÕÒµ½£¬·µ»Ø½ÚµãµØÖ·
+            cout << "æŸ¥æ‰¾åˆ° " << s << " å‡ºç°åœ¨ç¬¬ " << i << " ä¸ªèŠ‚ç‚¹" << endl;
+            return p; // æŸ¥æ‰¾åˆ°ï¼Œè¿”å›èŠ‚ç‚¹åœ°å€
         }
         i++;
         p = p->pNext;
     }
-    return NULL; // Ã»ÓĞ²éÕÒµ½£¬·µ»ØNULL
-} // ²éÕÒº¬ÓĞ¡°xxx¡±ĞÅÏ¢µÄ½ÚµãÎ»ÖÃ
+    return NULL; // æ²¡æœ‰æŸ¥æ‰¾åˆ°ï¼Œè¿”å›NULL
+} // æŸ¥æ‰¾å«æœ‰â€œxxxâ€ä¿¡æ¯çš„èŠ‚ç‚¹ä½ç½®
