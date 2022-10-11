@@ -1,7 +1,7 @@
 /*
- * ¹¦¡¡ÄÜ£º±í´ïÊ½ÖĞÀ¨ºÅÅä¶Ô
- * °æ±¾ºÅ£º2022-09-15
- * ±àÒë»·¾³£ºMinGW CLion 2021.2.3(C++17)
+ * åŠŸã€€èƒ½ï¼šå¤æ•°è¿ç®—
+ * ç‰ˆæœ¬å·ï¼š2022-09-15
+ * ç¼–è¯‘ç¯å¢ƒï¼šMinGW CLion 2021.2.3(C++17)
 */
 
 #include <iostream>
@@ -9,83 +9,83 @@
 
 using namespace std;
 
-typedef struct { // ¶¨Òå¸´ÊıÀàĞÍ
-    float rpart; // ¸´ÊıÊµ²¿
-    float ipart; // ¸´ÊıĞé²¿
-}*PCOMPLEX, COMPLEX;// ¸´ÊıÀàĞÍÃû
+typedef struct { // å®šä¹‰å¤æ•°ç±»å‹
+    float rpart; // å¤æ•°å®éƒ¨
+    float ipart; // å¤æ•°è™šéƒ¨
+}*PCOMPLEX, COMPLEX;// å¤æ•°ç±»å‹å
 
-void input (PCOMPLEX); // ÊäÈë
-void output (PCOMPLEX); // Êä³ö
-void add(PCOMPLEX, PCOMPLEX, PCOMPLEX); // ¼Ó·¨
-void sub(PCOMPLEX, PCOMPLEX, PCOMPLEX); // ¼õ·¨
-void mult(PCOMPLEX, PCOMPLEX, PCOMPLEX); // ³Ë·¨
-void divi(PCOMPLEX, PCOMPLEX, PCOMPLEX); // ³ı·¨
+void input (PCOMPLEX); // è¾“å…¥
+void output (PCOMPLEX); // è¾“å‡º
+void add(PCOMPLEX, PCOMPLEX, PCOMPLEX); // åŠ æ³•
+void sub(PCOMPLEX, PCOMPLEX, PCOMPLEX); // å‡æ³•
+void mult(PCOMPLEX, PCOMPLEX, PCOMPLEX); // ä¹˜æ³•
+void divi(PCOMPLEX, PCOMPLEX, PCOMPLEX); // é™¤æ³•
 
 int main() {
     PCOMPLEX num = (PCOMPLEX) malloc(sizeof(COMPLEX) * 2);
     PCOMPLEX res = (PCOMPLEX) malloc(sizeof(COMPLEX) * 1);
     input (num);
     input (num+1);
-    cout << "µÚÒ»´ÎÊäÈëÎª"; output (num); cout << endl;
-    cout << "µÚ¶ş´ÎÊäÈëÎª"; output (num+1); cout << endl;
+    cout << "ç¬¬ä¸€æ¬¡è¾“å…¥ä¸º"; output (num); cout << endl;
+    cout << "ç¬¬äºŒæ¬¡è¾“å…¥ä¸º"; output (num+1); cout << endl;
     add (num, num+1, res);
-    output (num); cout << " + "; output (num+1); cout << " µÄ½á¹ûÎª "; output (res); cout << endl;
+    output (num); cout << " + "; output (num+1); cout << " çš„ç»“æœä¸º "; output (res); cout << endl;
     sub (num, num+1, res);
-    output (num); cout << " - "; output (num+1); cout << " µÄ½á¹ûÎª "; output (res); cout << endl;
+    output (num); cout << " - "; output (num+1); cout << " çš„ç»“æœä¸º "; output (res); cout << endl;
     mult (num, num+1, res);
-    output (num); cout << " * "; output (num+1); cout << " µÄ½á¹ûÎª "; output (res); cout << endl;
+    output (num); cout << " * "; output (num+1); cout << " çš„ç»“æœä¸º "; output (res); cout << endl;
     divi (num, num+1, res);
-    output (num); cout << " / "; output (num+1); cout << " µÄ½á¹ûÎª "; output (res); cout << endl;
+    output (num); cout << " / "; output (num+1); cout << " çš„ç»“æœä¸º "; output (res); cout << endl;
     return 0;
 }
 
 void input (PCOMPLEX num){
-    cout << "ÊäÈë¸´ÊıµÄÊµ²¿¡¢Ğé²¿£º" << endl;
-    cin >> num->rpart >> num->ipart; // ÊäÈë¸´Êı
+    cout << "è¾“å…¥å¤æ•°çš„å®éƒ¨ã€è™šéƒ¨ï¼š" << endl;
+    cin >> num->rpart >> num->ipart; // è¾“å…¥å¤æ•°
 }
 
 void output (PCOMPLEX num){
     char f;
-    // ÅĞ¶ÏÊä³öµÄ·ûºÅ
+    // åˆ¤æ–­è¾“å‡ºçš„ç¬¦å·
     if (num->ipart > 0){
         f = '+';
     }
     else if (num->ipart < 0){
         f = '-';
     }
-    else{ // ÈôÎªÊµÊı£¬Ôò²»Êä³öĞé²¿
-        cout << "ÊµÊı" << num->rpart;
+    else{ // è‹¥ä¸ºå®æ•°ï¼Œåˆ™ä¸è¾“å‡ºè™šéƒ¨
+        cout << "å®æ•°" << num->rpart;
         return;
     }
-    // Èô²»ÎªÊµÊı£¬ÔòÊä³öĞé²¿
-    cout << "ĞéÊı" << num->rpart << f << abs(num->ipart) << "i";
+    // è‹¥ä¸ä¸ºå®æ•°ï¼Œåˆ™è¾“å‡ºè™šéƒ¨
+    cout << "è™šæ•°" << num->rpart << f << abs(num->ipart) << "i";
 }
 
 void add(PCOMPLEX num1, PCOMPLEX num2, PCOMPLEX res){
-    res->rpart = num1->rpart + num2->rpart; // ¼ÆËãÊµ²¿µÄºÍ
-    res->ipart = num1->ipart + num2->ipart; // ¼ÆËãĞé²¿µÄºÍ
+    res->rpart = num1->rpart + num2->rpart; // è®¡ç®—å®éƒ¨çš„å’Œ
+    res->ipart = num1->ipart + num2->ipart; // è®¡ç®—è™šéƒ¨çš„å’Œ
 }
 
 void sub(PCOMPLEX num1, PCOMPLEX num2, PCOMPLEX res){
-    res->rpart = num1->rpart - num2->rpart; // ¼ÆËãÊµ²¿µÄ²î
-    res->ipart = num1->ipart - num2->ipart; // ¼ÆËãĞé²¿µÄ²î
+    res->rpart = num1->rpart - num2->rpart; // è®¡ç®—å®éƒ¨çš„å·®
+    res->ipart = num1->ipart - num2->ipart; // è®¡ç®—è™šéƒ¨çš„å·®
 }
 
 void mult(PCOMPLEX num1, PCOMPLEX num2, PCOMPLEX res){
-    res->rpart = (num1->rpart * num2->rpart) - (num1->ipart * num2->ipart); // ¼ÆËãÊµ²¿µÄ»ı
-    res->ipart = (num1->ipart * num2->rpart) + (num1->rpart * num2->ipart); // ¼ÆËãĞé²¿µÄ»ı
+    res->rpart = (num1->rpart * num2->rpart) - (num1->ipart * num2->ipart); // è®¡ç®—å®éƒ¨çš„ç§¯
+    res->ipart = (num1->ipart * num2->rpart) + (num1->rpart * num2->ipart); // è®¡ç®—è™šéƒ¨çš„ç§¯
 }
 
 void divi(PCOMPLEX num1, PCOMPLEX num2, PCOMPLEX res){
     float temp = (pow(num2->rpart, 2) + pow(num2->ipart, 2));
     if (temp!=0)
     {
-        res->rpart = (num1->rpart * num2->rpart + num1->ipart * num2->ipart) / temp; // ¼ÆËãÊµ²¿µÄÉÌ
-        res->ipart = (num1->ipart * num2->rpart - num1->rpart * num2->ipart) / temp; // ¼ÆËãĞé²¿µÄÉÌ
+        res->rpart = (num1->rpart * num2->rpart + num1->ipart * num2->ipart) / temp; // è®¡ç®—å®éƒ¨çš„å•†
+        res->ipart = (num1->ipart * num2->rpart - num1->rpart * num2->ipart) / temp; // è®¡ç®—è™šéƒ¨çš„å•†
     }
     else
     {
-        cout << "³ıÊıÎª0" << endl;
-        exit(-1); // ³ıÊıÎª0£¬ÔòÒÔ´íÎó´úÂë-1½áÊø½ø³Ì
+        cout << "é™¤æ•°ä¸º0" << endl;
+        exit(-1); // é™¤æ•°ä¸º0ï¼Œåˆ™ä»¥é”™è¯¯ä»£ç -1ç»“æŸè¿›ç¨‹
     }
 }
