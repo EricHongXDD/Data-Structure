@@ -1,64 +1,75 @@
 /*
- * ¹¦¡¡ÄÜ£º¼òµ¥ËãÊı±í´ïÊ½ÇóÖµ
- * °æ±¾ºÅ£º2022-10-14
- * ±àÒë»·¾³£ºMinGW CLion 2021.2.3(C++17)
+ * åŠŸã€€èƒ½ï¼šç®€å•ç®—æ•°è¡¨è¾¾å¼æ±‚å€¼ï¼ˆä¸­ç¼€è¡¨è¾¾å¼è½¬åç¼€è¡¨è¾¾å¼ï¼‰
+ * ç‰ˆæœ¬å·ï¼š2022-10-13
+ * ç¼–è¯‘ç¯å¢ƒï¼šMinGW CLion 2021.2.3(C++17)
 */
 #include <iostream>
+#include <cmath>
+#include <string>
 
 using namespace std;
 
-// ½á¹¹¶¨Òå£º½Úµã
+// ç»“æ„å®šä¹‰ï¼šèŠ‚ç‚¹
 typedef struct Node{
-    char data; // Êı¾İÓò
-    struct Node *pNext; // Ö¸ÕëÓò
+    int dataint = 0; // æ•´å½¢åŸŸ
+    char datachar = 0; // ç¬¦å·åŸŸ
+    struct Node *pNext = nullptr; // æŒ‡é’ˆåŸŸ
 }*PNODE,NODE;
 
-// ½á¹¹¶¨Òå£ºÕ»
+// ç»“æ„å®šä¹‰ï¼šæ ˆ
 typedef struct Stack{
-    PNODE pTop; // Õ»¶¥½Úµã
-    PNODE pBottom; // Õ»Î²½Úµã
+    PNODE pTop; // æ ˆé¡¶èŠ‚ç‚¹
+    PNODE pBottom; // æ ˆå°¾èŠ‚ç‚¹
 }*PSTACK,STACK;
 
-PSTACK init_stack(); // ³õÊ¼»¯Ò»¸öÕ»
-bool is_stack_empty(PSTACK); // ÅĞ¶¨Õ»ÊÇ·ñÎª¿Õ
-void push_stack(PSTACK,char); // Ñ¹Õ»
-bool pop_stack(PSTACK, char*); // ³öÕ»Ò»´Î£¬²¢°Ñ³öÕ»µÄÔªËØ´æÈëĞÎ²ÎËùÖ¸Ïò±äÁ¿ÖĞ
-char * create_list(); // ½«ËãÊı±í´ïÊ½´æÈëLISTÖĞ£¬²¢·µ»ØLISTµÚÒ»¸ö×Ö·ûµÄµØÖ·
-int get_priority(char); // µÃµ½ÔËËã·ûµÄÓÅÏÈ¼¶£¬·µ»Ø1»ò2,ÓÅÏÈ¼¶Ô½¸ß£¬Ô½Ôç¼ÆËã
-char * to_postfix(PSTACK, PSTACK, char *); // ½«ÖĞ×º±í´ïÊ½×ª±ä³Éºó×º±í´ïÊ½
-bool number_operation(PSTACK, PSTACK, char); // Óöµ½²Ù×÷ÊıµÄ²Ù×÷
-bool operator_operation(PSTACK, PSTACK, char); // Óöµ½ÔËËã·ûµÄ²Ù×÷
-bool brace_operation(PSTACK, PSTACK, char); // Óöµ½À¨ºÅµÄ²Ù×÷
-int calculate_postfix(char *); // ¼ÆËãºó×º±í´ïÊ½
+PSTACK init_stack(); // åˆå§‹åŒ–ä¸€ä¸ªæ ˆ
+bool is_stack_empty(PSTACK); // åˆ¤å®šæ ˆæ˜¯å¦ä¸ºç©º
+void push_stack(PSTACK,int); // å‹æ ˆ(æ•´å½¢åŸŸ)
+void push_stack(PSTACK,char); // å‹æ ˆ(ç¬¦å·åŸŸ)
+bool pop_stack(PSTACK, int*); // å‡ºæ ˆä¸€æ¬¡ï¼Œå¹¶æŠŠå‡ºæ ˆçš„æ•´å½¢å…ƒç´ å­˜å…¥å½¢å‚æ‰€æŒ‡å‘å˜é‡ä¸­
+bool pop_stack(PSTACK, char*); // å‡ºæ ˆä¸€æ¬¡ï¼Œå¹¶æŠŠå‡ºæ ˆçš„ç¬¦å·å…ƒç´ å­˜å…¥å½¢å‚æ‰€æŒ‡å‘å˜é‡ä¸­
+void traverse(PSTACK); // éå†æ ˆ
+PSTACK reverse(PSTACK); // æ ˆé€†åº
 
-string LIST; // LIST´æ·ÅËãÊı±í´ïÊ½£¬ÒÔÊı×éĞÎÊ½´¢´æ
+
+int get_priority(char); // å¾—åˆ°è¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ï¼Œè¿”å›1æˆ–2,ä¼˜å…ˆçº§è¶Šé«˜ï¼Œè¶Šæ—©è®¡ç®—
+bool list_to_stack(PSTACK, const char *); // å°†å­˜å‚¨ä¸­ç¼€è¡¨è¾¾å¼çš„å­—ç¬¦ä¸²è½¬å˜æˆæ ˆ
+PSTACK to_postfix(PSTACK, PSTACK, PSTACK); // å°†ä¸­ç¼€è¡¨è¾¾å¼è½¬å˜æˆåç¼€è¡¨è¾¾å¼
+bool number_operation(PSTACK, PSTACK, PNODE); // é‡åˆ°æ“ä½œæ•°çš„æ“ä½œ
+bool operator_operation(PSTACK, PSTACK, PNODE); // é‡åˆ°è¿ç®—ç¬¦çš„æ“ä½œ
+bool brace_operation(PSTACK, PSTACK, PNODE); // é‡åˆ°æ‹¬å·çš„æ“ä½œ
+int calculate_postfix(PSTACK); // è®¡ç®—åç¼€è¡¨è¾¾å¼
+
 
 int main() {
-    char *list; // list´æ·ÅËãÊı±í´ïÊ½µÄµÚÒ»¸ö×Ö·ûµÄµØÖ·
-    list = create_list();
+    string list; // listä¸ºå­˜å‚¨ä¸­ç¼€è¡¨è¾¾å¼çš„å­—ç¬¦ä¸²
+    cin >> list;
 
-    PSTACK pS1 = init_stack(); // ÔËËã·ûÕ»pS1
-    PSTACK pS2 = init_stack(); // ´¢´æÖĞ¼ä½á¹ûÕ»pS2
+    PSTACK pS1 = init_stack(); // è¿ç®—ç¬¦æ ˆpS1(ç”¨äºè½¬æ¢åç¼€è¡¨è¾¾å¼)
+    PSTACK pS2 = init_stack(); // å‚¨å­˜ä¸­é—´ç»“æœæ ˆpS2(ç”¨äºè½¬æ¢åç¼€è¡¨è¾¾å¼)
+    PSTACK pS3 = init_stack(); // å‚¨å­˜ä¸­ç¼€è¡¨è¾¾å¼æ ˆpS3(ç”¨äºå­˜æ”¾ä¸­ç¼€è¡¨è¾¾å¼)
 
-    list = to_postfix(pS1, pS2, list); // ×ª»»³Éºó×º±í´ïÊ½
-    cout << "ºó×º±í´ïÊ½µÄ½á¹ûÎª" << endl;
-    for (int i = 0; list[i] != '\0'; ++i) cout << list[i] << " ";
-    cout << endl;
+    list_to_stack(pS3,list.c_str()); // å°†ä¸­ç¼€è¡¨è¾¾å¼å­—ç¬¦ä¸²è½¬æ¢åˆ°æ ˆå†…
+    pS3 = reverse(pS3); // å°†ä¸­ç¼€è¡¨è¾¾å¼å­—ç¬¦ä¸²è½¬æ¢åˆ°æ ˆå†…
 
-    int res = calculate_postfix(list);
-    cout << "ÔËËã½á¹ûÎª£º" << res << " ";
+    PSTACK pS4 = to_postfix(pS1, pS2, pS3); // è½¬æ¢æˆåç¼€è¡¨è¾¾å¼
+    pS4 = reverse(pS4); // è½¬æ¢æˆåç¼€è¡¨è¾¾å¼
+    cout << "åç¼€è¡¨è¾¾å¼çš„ç»“æœä¸ºï¼š" ; traverse(pS4); cout << endl;
+
+    int res = calculate_postfix(pS4);
+    cout << "è¿ç®—ç»“æœä¸ºï¼š" << res << " ";
     return 0;
 }
 
 PSTACK init_stack(){
     auto pStack = (PSTACK)malloc(sizeof(STACK));
-    pStack->pTop = (PNODE)malloc(sizeof(NODE)); // ÔÚpStackÕâ¸öÕ»ÄÚ£¬ÓëÆäÍ·½Úµã·ÖÅäÄÚ´æ¿Õ¼ä
+    pStack->pTop = (PNODE)malloc(sizeof(NODE)); // åœ¨pStackè¿™ä¸ªæ ˆå†…ï¼Œä¸å…¶å¤´èŠ‚ç‚¹åˆ†é…å†…å­˜ç©ºé—´
     if (pStack->pTop == nullptr){
-        cout << "¶¯Ì¬ÄÚ´æ·ÖÅäÊ§°Ü";
+        cout << "åŠ¨æ€å†…å­˜åˆ†é…å¤±è´¥";
         exit(-1);
     }
-    pStack->pTop->pNext = nullptr; // Í·½áµãpTopµÄÖ¸ÕëÓòÎª¿Õ£¬ÒòÎªËûÊÇÕ»ÄÚ×îºóÒ»¸ö½Úµã
-    pStack->pBottom = pStack->pTop; // ³õÊ¼Ê±£¬Ö»ÓĞÒ»¸ö½Úµã£¬ÈÃÎ²½áµã¾ÍÊÇÍ·½áµã
+    pStack->pTop->pNext = nullptr; // å¤´ç»“ç‚¹pTopçš„æŒ‡é’ˆåŸŸä¸ºç©ºï¼Œå› ä¸ºä»–æ˜¯æ ˆå†…æœ€åä¸€ä¸ªèŠ‚ç‚¹
+    pStack->pBottom = pStack->pTop; // åˆå§‹æ—¶ï¼Œåªæœ‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œè®©å°¾ç»“ç‚¹å°±æ˜¯å¤´ç»“ç‚¹
     return pStack;
 }
 
@@ -69,46 +80,124 @@ bool is_stack_empty(PSTACK pS){
         return false;
 }
 
-void push_stack(PSTACK pS, char data){
-    auto pNew = (PNODE)malloc(sizeof(NODE)); // pNewÎªÒªÑ¹ÈëµÄĞÂ½Úµã
-    pNew->data = data;
-    pNew->pNext = pS->pTop; // Ñ¹ÈëµÄĞÂ½ÚµãµÄÖ¸ÕëÓòÖ¸ÏòÔ­ÏÈµÄTop½Úµã
-    pS->pTop = pNew; // Ô­ÏÈµÄTop½ÚµãÖ¸ÕëÓòÖ¸ÏòÑ¹ÈëµÄĞÂ½Úµã
+void push_stack(PSTACK pS,int dataint){
+    auto pNew = (PNODE)malloc(sizeof(NODE)); // pNewä¸ºè¦å‹å…¥çš„æ–°èŠ‚ç‚¹
+    pNew->dataint = dataint;
+    pNew->datachar = '0';
+    pNew->pNext = pS->pTop; // å‹å…¥çš„æ–°èŠ‚ç‚¹çš„æŒ‡é’ˆåŸŸæŒ‡å‘åŸå…ˆçš„TopèŠ‚ç‚¹
+    pS->pTop = pNew; // åŸå…ˆçš„TopèŠ‚ç‚¹æŒ‡é’ˆåŸŸæŒ‡å‘å‹å…¥çš„æ–°èŠ‚ç‚¹
 }
 
-bool pop_stack(PSTACK pS, char* pData){
+void push_stack(PSTACK pS, char datachar){
+    auto pNew = (PNODE)malloc(sizeof(NODE)); // pNewä¸ºè¦å‹å…¥çš„æ–°èŠ‚ç‚¹
+    pNew->datachar = datachar;
+    pNew->dataint = 0;
+    pNew->pNext = pS->pTop; // å‹å…¥çš„æ–°èŠ‚ç‚¹çš„æŒ‡é’ˆåŸŸæŒ‡å‘åŸå…ˆçš„TopèŠ‚ç‚¹
+    pS->pTop = pNew; // åŸå…ˆçš„TopèŠ‚ç‚¹æŒ‡é’ˆåŸŸæŒ‡å‘å‹å…¥çš„æ–°èŠ‚ç‚¹
+}
+
+bool pop_stack(PSTACK pS, int* pDataint){
     if (is_stack_empty(pS))
         return false;
     else
     {
-        *pData = pS->pTop->data;
+        *pDataint = pS->pTop->dataint;
         PNODE r = pS->pTop;
         pS->pTop = r->pNext;
         free(r);
-        r = nullptr; // r=nullptrÊÇÒòÎªfree£¨r£©Ö»ÊÇ°ÑÖ¸ÕërËùÖ¸µÄ±äÁ¿ÊÍ·ÅÁË£¬µ«r±¾Éí»¹´æ×ÅµØÖ·£¬ĞèÒªÊ¹rÎª¿ÕÖ¸ÕëÈÃËû²»´æÈÎºÎµØÖ·
+        r = nullptr; // r=nullptræ˜¯å› ä¸ºfreeï¼ˆrï¼‰åªæ˜¯æŠŠæŒ‡é’ˆræ‰€æŒ‡çš„å˜é‡é‡Šæ”¾äº†ï¼Œä½†ræœ¬èº«è¿˜å­˜ç€åœ°å€ï¼Œéœ€è¦ä½¿rä¸ºç©ºæŒ‡é’ˆè®©ä»–ä¸å­˜ä»»ä½•åœ°å€
         return true;
     }
 }
 
-bool number_operation(PSTACK pS1, PSTACK pS2, char list){
-    if (isdigit(list)){ // Óöµ½²Ù×÷ÊıÊ±£¬Ñ¹Èës2£»
-        push_stack(pS2,list);
+bool pop_stack(PSTACK pS, char* pDatachar){
+    if (is_stack_empty(pS))
+        return false;
+    else
+    {
+        *pDatachar = pS->pTop->datachar;
+        PNODE r = pS->pTop;
+        pS->pTop = r->pNext;
+        free(r);
+        r = nullptr; // r=nullptræ˜¯å› ä¸ºfreeï¼ˆrï¼‰åªæ˜¯æŠŠæŒ‡é’ˆræ‰€æŒ‡çš„å˜é‡é‡Šæ”¾äº†ï¼Œä½†ræœ¬èº«è¿˜å­˜ç€åœ°å€ï¼Œéœ€è¦ä½¿rä¸ºç©ºæŒ‡é’ˆè®©ä»–ä¸å­˜ä»»ä½•åœ°å€
+        return true;
+    }
+}
+
+bool list_to_stack(PSTACK pS, const char * list){
+    string temp;
+    temp = list;
+    for (int i = 0; i < temp.length();) {
+        if (isdigit(list[i])){
+            int j = i;
+            int res = 0;
+            while (isdigit(list[i])){ // è®¡æ•°å™¨ç”¨äºè®¡ç®—ç¬¦å·å‰æœ‰å‡ ä½æ•°å­—
+                ++i;
+            }
+            for (; j < i; ++j) {
+                int temp = list[j] - '0';
+                res+= temp*pow(10,i-j-1);
+            }
+            push_stack(pS,res);
+        }
+        else{
+            push_stack(pS,list[i]);
+            ++i;
+        }
+    }
+    return true;
+}
+
+void traverse(PSTACK pS){
+    auto pNew = pS->pTop;
+    while (pNew != pS->pBottom){
+        if (pNew->dataint){
+            cout << pNew->dataint << " ";
+            pNew = pNew->pNext;
+        }
+        else{
+            cout << pNew->datachar << " ";
+            pNew = pNew->pNext;
+        }
+    }
+}
+
+PSTACK reverse(PSTACK pS1){
+    PSTACK pS2 = init_stack();
+    while (!is_stack_empty(pS1)){ // å½“s1ä¸ä¸ºç©ºï¼Œå°†s1ä¸­å‰©ä½™å…ƒç´ ä¾æ¬¡å¼¹å‡ºå¹¶å‹å…¥s2
+        if (pS1->pTop->datachar != '0'){ // ä¸ºç¬¦å·
+            char Datachar;
+            pop_stack(pS1,&Datachar); // ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦
+            push_stack(pS2,Datachar); // å‹å…¥s2
+        }
+        else{ // ä¸ºæ•´å½¢
+            int Dataint;
+            pop_stack(pS1,&Dataint); // ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦
+            push_stack(pS2,Dataint); // å‹å…¥s2
+        }
+    }
+    return pS2;
+}
+
+bool number_operation(PSTACK, PSTACK pS2, PNODE pTop){
+    if (pTop->dataint){ // é‡åˆ°æ“ä½œæ•°æ—¶ï¼Œå‹å…¥s2ï¼›
+        push_stack(pS2,pTop->dataint);
         return true;
     }
     else
         return false;
 }
 
-bool operator_operation(PSTACK pS1, PSTACK pS2, char list){
-    char *pData = (char*)malloc(sizeof(char)); // ÓÃÓÚ´æ·Å³öÕ»µÄ½ÚµãÊı¾İÓò
-    if (list == '+' || list == '-' || list == '*' || list == '/'){ // Óöµ½ÔËËã·ûÊ±£¬±È½ÏÆäÓës1Õ»¶¥ÔËËã·ûµÄÓÅÏÈ¼¶£º
-        if (is_stack_empty(pS1) || pS1->pTop->data == '(' || get_priority(list) > get_priority(pS1->pTop->data)){ // Èç¹ûs1Îª¿Õ£¬»òÕ»¶¥ÔËËã·ûÎª×óÀ¨ºÅ¡°£¨¡± £¬»òÓÅÏÈ¼¶±ÈÕ»¶¥ÔËËã·û¸ß,ÔòÖ±½Ó½«´ËÔËËã·ûÈëÕ»£»
-            push_stack(pS1,list);
+bool operator_operation(PSTACK pS1, PSTACK pS2, PNODE pTop){
+    char Datachar = '0';// ç”¨äºå­˜æ”¾å‡ºæ ˆçš„èŠ‚ç‚¹æ•°æ®åŸŸ
+    if (pTop->datachar == '+' || pTop->datachar == '-' || pTop->datachar == '*' || pTop->datachar == '/'){ // é‡åˆ°è¿ç®—ç¬¦æ—¶ï¼Œæ¯”è¾ƒå…¶ä¸s1æ ˆé¡¶è¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ï¼š
+        if (is_stack_empty(pS1) || pS1->pTop->datachar == '(' || get_priority(pTop->datachar) > get_priority(pS1->pTop->datachar)){ // å¦‚æœs1ä¸ºç©ºï¼Œæˆ–æ ˆé¡¶è¿ç®—ç¬¦ä¸ºå·¦æ‹¬å·â€œï¼ˆâ€ ï¼Œæˆ–ä¼˜å…ˆçº§æ¯”æ ˆé¡¶è¿ç®—ç¬¦é«˜,åˆ™ç›´æ¥å°†æ­¤è¿ç®—ç¬¦å…¥æ ˆï¼›
+            push_stack(pS1,pTop->datachar);
         }
-        else{ // ½«s1Õ»¶¥µÄÔËËã·ûµ¯³ö²¢Ñ¹Èëµ½s2ÖĞ£¬ÔÙ´Î×ªµ½4.1²½ÖèÓës1ÖĞĞÂµÄÕ»¶¥ÔËËã·ûÏà±È½Ï£»
-            pop_stack(pS1,pData); // ½«s1Õ»¶¥µÄÔËËã·ûµ¯³ö
-            push_stack(pS2,*pData); // ½«s1Õ»¶¥µÄÔËËã·ûÑ¹Èëµ½s2ÖĞ
-            operator_operation (pS1,pS2,list); // ÔÙ´Î×ªµ½4.1²½ÖèÓës1ÖĞĞÂµÄÕ»¶¥ÔËËã·ûÏà±È½Ï
+        else{ // å°†s1æ ˆé¡¶çš„è¿ç®—ç¬¦å¼¹å‡ºå¹¶å‹å…¥åˆ°s2ä¸­ï¼Œå†æ¬¡è½¬åˆ°4.1æ­¥éª¤ä¸s1ä¸­æ–°çš„æ ˆé¡¶è¿ç®—ç¬¦ç›¸æ¯”è¾ƒï¼›
+            pop_stack(pS1,&Datachar); // å°†s1æ ˆé¡¶çš„è¿ç®—ç¬¦å¼¹å‡º
+            push_stack(pS2,Datachar); // å°†s1æ ˆé¡¶çš„è¿ç®—ç¬¦å‹å…¥åˆ°s2ä¸­
+            operator_operation (pS1,pS2,pTop); // å†æ¬¡è½¬åˆ°4.1æ­¥éª¤ä¸s1ä¸­æ–°çš„æ ˆé¡¶è¿ç®—ç¬¦ç›¸æ¯”è¾ƒ
         }
         return true;
     }
@@ -116,19 +205,19 @@ bool operator_operation(PSTACK pS1, PSTACK pS2, char list){
         return false;
 }
 
-bool brace_operation(PSTACK pS1, PSTACK pS2, char list){
-    if (list == '('){ // Èç¹ûÊ±×óÀ¨ºÅ¡°£¨¡± £¬ÔòÖ±½ÓÑ¹Èës1£»
-        push_stack(pS1,list);
+bool brace_operation(PSTACK pS1, PSTACK pS2, PNODE pTop){
+    if (pTop->datachar == '('){ // å¦‚æœæ—¶å·¦æ‹¬å·â€œï¼ˆâ€ ï¼Œåˆ™ç›´æ¥å‹å…¥s1ï¼›
+        push_stack(pS1,pTop->datachar);
         return true;
     }
-    else if (list == ')'){ // Èç¹ûÊÇÓÒÀ¨ºÅ¡°£©¡± £¬ÔòÒÀ´Îµ¯³ös1Õ»¶¥µÄÔËËã·û£¬²¢Ñ¹Èës2£¬Ö±µ½Óöµ½×óÀ¨ºÅÎªÖ¹£¬´ËÊ±½«ÕâÒ»¶ÔÀ¨ºÅ¶ªÆú;
-        while (pS1->pTop->data != '('){ // Ö±µ½Óöµ½×óÀ¨ºÅÎªÖ¹
-            char *pData = (char*)malloc(sizeof(char));
-            pop_stack(pS1,pData); // ÒÀ´Îµ¯³ös1Õ»¶¥µÄÔËËã·û
-            push_stack(pS2,*pData); // Ñ¹Èës2
+    else if (pTop->datachar == ')'){ // å¦‚æœæ˜¯å³æ‹¬å·â€œï¼‰â€ ï¼Œåˆ™ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦ï¼Œå¹¶å‹å…¥s2ï¼Œç›´åˆ°é‡åˆ°å·¦æ‹¬å·ä¸ºæ­¢ï¼Œæ­¤æ—¶å°†è¿™ä¸€å¯¹æ‹¬å·ä¸¢å¼ƒ;
+        while (pS1->pTop->datachar != '('){ // ç›´åˆ°é‡åˆ°å·¦æ‹¬å·ä¸ºæ­¢
+            char *pDatachar = (char*)malloc(sizeof(char));
+            pop_stack(pS1,pDatachar); // ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦
+            push_stack(pS2,*pDatachar); // å‹å…¥s2
         }
-        char *pData = (char*)malloc(sizeof(char));
-        pop_stack(pS1,pData); // ½«ÕâÒ»¶ÔÀ¨ºÅ¶ªÆú
+        char *pDatachar = (char*)malloc(sizeof(char));
+        pop_stack(pS1,pDatachar); // å°†è¿™ä¸€å¯¹æ‹¬å·ä¸¢å¼ƒ
         return true;
     }
     else {
@@ -137,15 +226,10 @@ bool brace_operation(PSTACK pS1, PSTACK pS2, char list){
 
 }
 
-// 1. ½«×Ö·û´®×ª»¯ÎªÖĞ×º±í´ïÊ½£¬²¢´æÈëµ½LISTÖĞ
-char * create_list(){
-    cin >> LIST;
-    return &LIST[0];
-}
 
-// 2. µÃµ½ÔËËã·ûÓÅÏÈ¼¶
+// 2. å¾—åˆ°è¿ç®—ç¬¦ä¼˜å…ˆçº§
 int get_priority(char list){
-    int priority = 0;
+    int priority;
     switch(list){
         case '+':
         case '-':
@@ -156,72 +240,75 @@ int get_priority(char list){
             priority = 2;
             break;
         default:
-            cout << "ÔËËã·û´íÎó" << endl;
+            cout << "è¿ç®—ç¬¦é”™è¯¯" << endl;
             exit(-1);
     }
     return priority;
 }
 
-// 3. ½«ÖĞ×º±í´ïÊ½×ª»»Îªºó×º±í´ïÊ½£¬²¢´æÈëµ½LISTÖĞ
-char * to_postfix(PSTACK pS1, PSTACK pS2, char * list){
-    for (int i = 0; list[i] != '\0'; ++i){ // Ñ­»·±éÀúÖĞĞò±í´ïÊ½,Ö±µ½±í´ïÊ½µÄ×îÓÒ±ß
-        if (number_operation(pS1, pS2, list[i])) continue;
-        if (operator_operation(pS1, pS2, list[i])) continue;
-        if (brace_operation(pS1, pS2, list[i])) continue;
+// 3. å°†ä¸­ç¼€è¡¨è¾¾å¼è½¬æ¢ä¸ºåç¼€è¡¨è¾¾å¼ï¼Œå¹¶å­˜å…¥åˆ°LISTä¸­
+PSTACK to_postfix(PSTACK pS1, PSTACK pS2, PSTACK pS3){
+    auto pTemp = pS3->pTop;
+    while(pTemp != pS3->pBottom){ // å¾ªç¯éå†ä¸­åºæ ˆ,ç›´åˆ°æ ˆåº•
+        if (number_operation(pS1, pS2, pTemp)) {
+            pTemp = pTemp->pNext;
+            continue;
+        }
+        if (operator_operation(pS1, pS2, pTemp)) {
+            pTemp = pTemp->pNext;
+            continue;
+        }
+        if (brace_operation(pS1, pS2, pTemp)) {
+            pTemp = pTemp->pNext;
+        }
     }
-    while (!is_stack_empty(pS1)){ // µ±s1²»Îª¿Õ£¬½«s1ÖĞÊ£ÓàÔªËØÒÀ´Îµ¯³ö²¢Ñ¹Èës2
-        char *pData = (char*)malloc(sizeof(char));
-        pop_stack(pS1,pData); // ÒÀ´Îµ¯³ös1Õ»¶¥µÄÔËËã·û
-        push_stack(pS2,*pData); // Ñ¹Èës2
+    while (!is_stack_empty(pS1)){ // å½“s1ä¸ä¸ºç©ºï¼Œå°†s1ä¸­å‰©ä½™å…ƒç´ ä¾æ¬¡å¼¹å‡ºå¹¶å‹å…¥s2
+        if (pS1->pTop->datachar != '0'){ // ä¸ºç¬¦å·
+            char Datachar;
+            pop_stack(pS1,&Datachar); // ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦
+            push_stack(pS2,Datachar); // å‹å…¥s2
+        }
+        else{ // ä¸ºæ•´å½¢
+            int Dataint;
+            pop_stack(pS1,&Dataint); // ä¾æ¬¡å¼¹å‡ºs1æ ˆé¡¶çš„è¿ç®—ç¬¦
+            push_stack(pS2,Dataint); // å‹å…¥s2
+        }
     }
-    // ½á¹ûÎªs2µÄÄæĞò£¬¼´°Ñs2ÒÀ´Îµ¯³ö²¢Ñ¹Èës1£¬×îºóÊä³ös1
-    while (!is_stack_empty(pS2)){ // µ±s2²»Îª¿Õ£¬½«s2ÖĞÊ£ÓàÔªËØÒÀ´Îµ¯³ö²¢Ñ¹Èës1
-        char *pData = (char*)malloc(sizeof(char));
-        pop_stack(pS2,pData); // ÒÀ´Îµ¯³ös2Õ»¶¥µÄÔËËã·û
-        push_stack(pS1,*pData); // Ñ¹Èës1
-    }
-    // ÒÀ´ÎÊä³ös1ÖÁlist
-    for (int i = 0; !is_stack_empty(pS1); ++i){ // Êä³ölistÎªºó×º±í´ïÊ½
-        char *pData = (char*)malloc(sizeof(char));
-        pop_stack(pS1,pData);
-        list[i] = *pData;
-        list[i+1] = '\0'; // ±£Ö¤list³¤¶ÈÊ¼ÖÕÊÇi+1
-    }
-    return list;
+    return pS2;
 }
 
-int calculate_postfix(char * list){
-    PSTACK pS = init_stack(); // ¸ÃÕ»ÓÃÓÚ¼ÆËãºó×º±í´ïÊ½µÄÖµ
-    for (int i = 0; list[i] != '\0'; ++i) {
-        if (isdigit(list[i])){ // Óöµ½Êı×ÖÊ±£¬½«Êı×ÖÑ¹Èë¶ÑÕ»
-            push_stack(pS,list[i]);
+int calculate_postfix(PSTACK pS4){
+    PSTACK pS1 = init_stack(); // è¯¥æ ˆç”¨äºè®¡ç®—åç¼€è¡¨è¾¾å¼çš„å€¼
+    while (pS4->pTop != pS4->pBottom){
+        if (pS4->pTop->dataint){ // é‡åˆ°æ•°å­—æ—¶ï¼Œå°†æ•°å­—å‹å…¥å †æ ˆ
+            int temp = 0;
+            pop_stack(pS4,&temp);
+            push_stack(pS1,temp);
         }
-        else{ // Óöµ½ÔËËã·ûÊ±£¬µ¯³öÕ»¶¥µÄÁ½¸öÊı£¬ÓÃÔËËã·û¶ÔËüÃÇ×öÏàÓ¦µÄ¼ÆËã²¢½«½á¹ûÈëÕ»
-            char a, b, c; // a,bÎªÕ»¶¥Á½¸öÊı(ÖĞ¼äÁ¿£¬Îª×Ö·ûĞÍ)
-            int ta, tb, tc; // a,bÎªÕ»¶¥Á½¸öÊı£¬cÎª½á¹ûÊı(½á¹ûÁ¿£¬ÎªÕûĞÍ)
-            pop_stack(pS,&b); // µ¯³öÕ»¶¥µÄÁ½¸öÊı
-            pop_stack(pS,&a); // µ¯³öÕ»¶¥µÄÁ½¸öÊı
-            ta = a - '0'; tb = b - '0';
-            switch (list[i]){ // ÓÃÔËËã·û¶ÔËüÃÇ×öÏàÓ¦µÄ¼ÆËã£¬½á¹û´æ´¢ÔÚcÖĞ
+        else{ // é‡åˆ°è¿ç®—ç¬¦æ—¶ï¼Œå¼¹å‡ºæ ˆé¡¶çš„ä¸¤ä¸ªæ•°ï¼Œç”¨è¿ç®—ç¬¦å¯¹å®ƒä»¬åšç›¸åº”çš„è®¡ç®—å¹¶å°†ç»“æœå…¥æ ˆ
+            int a = 0, b = 0, c = 0;
+            char temp = '0';
+            pop_stack(pS1,&b);
+            pop_stack(pS1,&a);
+            switch (pS4->pTop->datachar){ // ç”¨è¿ç®—ç¬¦å¯¹å®ƒä»¬åšç›¸åº”çš„è®¡ç®—ï¼Œç»“æœå­˜å‚¨åœ¨cä¸­
                 case '+':
-                    tc = ta + tb;
+                    c = a + b;
                     break;
                 case '-':
-                    tc = ta - tb;
+                    c = a - b;
                     break;
                 case '*':
-                    tc = ta * tb;
+                    c = a * b;
                     break;
                 case '/':
-                    tc = ta / tb ;
+                    c = a / b ;
                     break;
             }
-            c = tc + '0';
-            push_stack(pS,c);
+            push_stack(pS1,c);
+            pop_stack(pS4,&temp);
         }
     }
-    char tres;
-    pop_stack(pS,&tres);
-    int res = tres - '0';
+    int res;
+    pop_stack(pS1,&res);
     return res;
 }
